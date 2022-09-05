@@ -31,6 +31,9 @@ class AbstractInteractionClient:
 
     def _get_session_kwargs(self) -> Dict[str, Any]:
         """Returns kwargs necessary for creating a session instance."""
+        # TODO redefine by adding BasicAuth params
+        # TODO redefine by adding X-Request-ID param for Idempotence
+        #  https://developers.cloudpayments.ru/#idempotentnost-api. Уникальный ключ на одну операцию
         kwargs = {
             'connector': self.CONNECTOR,
             'connector_owner': False,
