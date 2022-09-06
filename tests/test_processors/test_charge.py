@@ -22,5 +22,6 @@ async def test_download():
 class TestCharge:
     """Test cases for checking charge method."""
 
-    def test_success_process(self):
+    def test_success_process(self, charge_request_serialized):
         """Check success charge method."""
+        pass
