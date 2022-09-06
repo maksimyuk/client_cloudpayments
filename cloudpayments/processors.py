@@ -1,7 +1,7 @@
 
 from cloudpayments.base.processors import BaseMethodProcessor
 from cloudpayments.interaction.client import CloudPaymentInteractionClient
-from cloudpayments.models import ChargeRequestSchema, ChargeResponseSchema, Secure3dAuthenticationSchema
+from cloudpayments.models import ChargeRequestSchema, Secure3dAuthenticationSchema, TransactionSchema
 
 
 class ChargeProcessor(BaseMethodProcessor):
@@ -29,12 +29,9 @@ class ChargeProcessor(BaseMethodProcessor):
         except Exception as e:
             raise
 
-        # Deserializing response
-        # response = ChargeResponseSchema().load(raw_response)
-
         # Parsing result
         if raw_response['success']:
-            return 'Transaction'
+            return TransactionSchema().load(raw_response['Model'])
 
         if raw_response['message']:
             return 'Message'

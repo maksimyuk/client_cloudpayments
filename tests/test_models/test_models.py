@@ -98,7 +98,7 @@ def raw_transaction_response() -> dict:
     }
 
 
-class TestTranscactionSchema:
+class TestTransactionSchema:
     """Test case for checking serialization."""
 
     def test_serialization(self, raw_transaction_response):
