@@ -4,8 +4,8 @@ from cloudpayments.processors import ChargeProcessor
 
 class CloudPayment:
     """
-    Class for describing client methods to interact with cloudpayments.
-    Add new method with processor to interact by cloudpayments.
+    Class-facade for describing client methods to interact with cloudpayments.
+    Add new method with processor to interact by cloudpayments API.
     """
 
     @classmethod
