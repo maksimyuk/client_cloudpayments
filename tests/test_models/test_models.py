@@ -1,6 +1,6 @@
 import pytest
 
-from cloudpayments.models import Secure3dAuthenticationSchema, TransactionSchema
+from cloudpayments.models import ChargeRequestSchema, Secure3dAuthenticationSchema, TransactionSchema
 
 
 @pytest.fixture()
@@ -104,5 +104,42 @@ class TestTransactionSchema:
     def test_serialization(self, raw_transaction_response):
         """Check for successful serialization."""
         serialized = TransactionSchema().load(raw_transaction_response)
+
+        assert serialized
+
+
+@pytest.fixture()
+def raw_charge_request() -> dict:
+    """"""
+    return {
+        "Amount": 10,
+        "Currency": "RUB",
+        "InvoiceId": "1234567",
+        "IpAddress": "123.123.123.123",
+        "Description": "Оплата товаров в example.com",
+        "AccountId": "user_x",
+        "Name": "CARDHOLDER NAME",
+        "CardCryptogramPacket": "01492500008719030128SMfLeYdKp5dSQVIiO5l6ZCJiPdel4uDjdFTTz1UnXY+3QaZcNOW8lmXg0H670MclS4lI+qLkujKF4pR5Ri+T/E04Ufq3t5ntMUVLuZ998DLm+OVHV7FxIGR7snckpg47A73v7/y88Q5dxxvVZtDVi0qCcJAiZrgKLyLCqypnMfhjsgCEPF6d4OMzkgNQiynZvKysI2q+xc9cL0+CMmQTUPytnxX52k9qLNZ55cnE8kuLvqSK+TOG7Fz03moGcVvbb9XTg1oTDL4pl9rgkG3XvvTJOwol3JDxL1i6x+VpaRxpLJg0Zd9/9xRJOBMGmwAxo8/xyvGuAj85sxLJL6fA==",
+        "Payer": {
+            "FirstName": "Тест",
+            "LastName": "Тестов",
+            "MiddleName": "Тестович",
+            "Birth": "1955-02-24",
+            "Address": "тестовый проезд дом тест",
+            "Street": "Lenina",
+            "City": "MO",
+            "Country": "RU",
+            "Phone": "123",
+            "Postcode": "345"
+        },
+    }
+
+
+class TestChargeRequest:
+    """Test case for checking serialization."""
+
+    def test_serialization(self, raw_charge_request):
+        """Check for successful serialization."""
+        serialized = ChargeRequestSchema().load(raw_charge_request)
 
         assert serialized

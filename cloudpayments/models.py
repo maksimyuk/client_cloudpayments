@@ -2,7 +2,7 @@
 from marshmallow import INCLUDE, Schema, fields
 from marshmallow_enum import EnumField
 
-from cloudpayments.enum import Currency
+from cloudpayments.enum import Currency, Localization
 
 
 class ChargeErrorModelSchema(Schema):
@@ -24,8 +24,37 @@ class ChargeResponseSchema(Schema):
     model = fields.Nested(ChargeErrorModelSchema, default=None)
 
 
+class PayerSchema(Schema):
+    """Model for payer."""
+
+    firstname = fields.String(data_key='FirstName')
+    lastname = fields.String(data_key='LastName')
+    middle_name = fields.String(data_key='MiddleName')
+    birth = fields.Date(data_key='Birth')
+    street = fields.String(data_key='Street')
+    address = fields.String(data_key='Address')
+    city = fields.String(data_key='City')
+    country = fields.String(data_key='Country')
+    phone = fields.String(data_key='Phone')
+    postcode = fields.String(data_key='Postcode')
+
+
 class ChargeRequestSchema(Schema):
     """Model for charge request."""
+
+    amount = fields.Number(required=True, data_key='Amount')
+    currency = fields.String(data_key='Currency')
+    ip_address = fields.IP(required=True, data_key='IpAddress')
+    card_cryptogram_packet = fields.String(required=True, data_key='CardCryptogramPacket')
+    name = fields.String(data_key='Name')
+    payment_url = fields.URL(data_key='PaymentUrl')
+    invoice_id = fields.String(data_key='InvoiceId')
+    description = fields.String(data_key='Description')
+    culture_name = EnumField(Localization, data_key='CultureName')
+    account_id = fields.String(data_key='AccountId')
+    email = fields.Email(data_key='Email')
+    payer = fields.Nested(PayerSchema, data_key='Payer')
+    json_data = fields.Dict(data_key='Postcode')
 
 
 class Secure3dAuthenticationSchema(Schema):
