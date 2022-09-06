@@ -24,7 +24,7 @@ class ChargeProcessor(BaseMethodProcessor):
             response = await client.post(
                 interaction_method=interaction_method,
                 url=endpoint_url,
-                **ChargeRequestSchema().dump(schema),
+                params=ChargeRequestSchema().dump(schema),
             )
         except Exception as e:
             raise

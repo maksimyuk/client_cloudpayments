@@ -22,6 +22,15 @@ async def test_download():
 class TestCharge:
     """Test cases for checking charge method."""
 
-    def test_success_process(self, charge_request_serialized):
+    @pytest.mark.asyncio
+    async def test_success_process(self, charge_request_serialized):
         """Check success charge method."""
-        pass
+        mock = aiohttp.ClientSession
+        mock.post = MagicMock()
+        mock.post.return_value.__aenter__.return_value.status = 200
+        mock.post.return_value.__aenter__.return_value.text.return_value = 'test content'
+
+        processor = ChargeProcessor()
+        response = await processor.process(schema=charge_request_serialized, require_confirmation=False)
+
+        assert response
