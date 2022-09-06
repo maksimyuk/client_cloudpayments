@@ -11,5 +11,5 @@ class BaseMethodProcessor:
     def __init__(self, *args, **kwargs):
         pass
 
-    def process(self):
+    async def process(self, *args, **kwargs):
         pass

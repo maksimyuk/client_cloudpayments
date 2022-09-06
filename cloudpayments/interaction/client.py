@@ -12,7 +12,7 @@ class CloudPaymentInteractionClient(AbstractInteractionClient):
 
     CONNECTOR = TCPConnector(limit=25, limit_per_host=5)
     SERVICE = 'test'
-    BASE_URL = 'test'
+    BASE_URL = 'https://api.cloudpayments.ru'
 
     @basic_auth
     @idempotence

@@ -19,3 +19,7 @@ class ChargeResponseSchema(Schema):
     success = fields.Bool(required=True)
     message = fields.String(default=None)
     model = fields.Nested(ChargeErrorModelSchema, default=None)
+
+
+class ChargeRequestSchema(Schema):
+    """Model for charge request."""
