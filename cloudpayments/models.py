@@ -61,14 +61,17 @@ class TransactionSchema(Schema):
     email = fields.Email(data_key='Email', allow_none=True)
     description = fields.String(data_key='Description')
     json_data = fields.Dict(data_key='JsonData', allow_none=True)
-    created_date = fields.DateTime(data_key='CreatedDate', format='timestamp')
+    # FIXME не нашел описание в каком виде передается дата. Сделана заглушка входящих данных в виде строки
+    created_date = fields.String(data_key='CreatedDate')
     payout_date = fields.DateTime(data_key='PayoutDate', allow_none=True)
     payout_date_iso = fields.DateTime(data_key='PayoutDateIso', allow_none=True)
     payout_amount = fields.Float(data_key='PayoutAmount', allow_none=True)
     created_date_iso = fields.DateTime(data_key='CreatedDateIso')
-    auth_date = fields.DateTime(data_key='AuthDate', format='timestamp')
+    # FIXME не нашел описание в каком виде передается дата. Сделана заглушка входящих данных в виде строки
+    auth_date = fields.String(data_key='AuthDate')
     auth_date_iso = fields.DateTime(data_key='AuthDateIso')
-    confirm_date = fields.DateTime(data_key='ConfirmDate', format='timestamp', allow_none=True)
+    # FIXME не нашел описание в каком виде передается дата. Сделана заглушка входящих данных в виде строки
+    confirm_date = fields.String(data_key='ConfirmDate', allow_none=True)
     confirm_date_iso = fields.DateTime(data_key='ConfirmDateIso', allow_none=True)
     auth_code = fields.String(data_key='AuthCode')
     test_mode = fields.Bool(data_key='TestMode')
