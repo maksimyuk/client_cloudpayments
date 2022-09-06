@@ -6,7 +6,7 @@ from typing import ClassVar, Optional, Type, Dict, Any
 
 from aiohttp import TCPConnector, ClientSession, ClientTimeout, ClientResponse
 
-from base.error import InteractionResponseError
+from cloudpayments.base.error import InteractionResponseError
 
 
 class AbstractInteractionClient:
