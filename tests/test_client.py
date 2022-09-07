@@ -12,7 +12,7 @@ class TestClient:
     async def test_charge(self):
         with aioresponses() as m:
             m.post(
-                'https://api.cloudpayments.ru/payments/cards/charge',
+                'https://api.cloudpayments.ru/payments/charge',
                 payload={'Success': True},
             )
 

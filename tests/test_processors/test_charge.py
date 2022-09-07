@@ -16,7 +16,7 @@ class TestCharge:
 
         with aioresponses() as m:
             m.post(
-                'https://api.cloudpayments.ru/payments/cards/charge',
+                'https://api.cloudpayments.ru/payments/charge',
                 payload=charge_response_success,
             )
 
@@ -31,7 +31,7 @@ class TestCharge:
         """Check incorrect request structure."""
         with aioresponses() as m:
             m.post(
-                'https://api.cloudpayments.ru/payments/cards/charge',
+                'https://api.cloudpayments.ru/payments/charge',
                 payload=charge_response_incorrect_request,
             )
 
@@ -43,7 +43,7 @@ class TestCharge:
         """Check response for charge declined."""
         with aioresponses() as m:
             m.post(
-                'https://api.cloudpayments.ru/payments/cards/charge',
+                'https://api.cloudpayments.ru/payments/charge',
                 payload=charge_response_charge_declined,
             )
 
@@ -55,7 +55,7 @@ class TestCharge:
         """Check response for secure3d."""
         with aioresponses() as m:
             m.post(
-                'https://api.cloudpayments.ru/payments/cards/charge',
+                'https://api.cloudpayments.ru/payments/charge',
                 payload=charge_response_secure_3d,
             )
 

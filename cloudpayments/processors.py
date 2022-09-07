@@ -19,7 +19,7 @@ class ChargeProcessor(BaseMethodProcessor):
 
         # Building url for request
         interaction_method = ('auth' if require_confirmation else 'charge')
-        relative_url = f'payments/cards/{interaction_method}'
+        relative_url = f'payments/{interaction_method}'
         endpoint_url = client.endpoint_url(relative_url)
 
         # Making request
@@ -35,6 +35,8 @@ class ChargeProcessor(BaseMethodProcessor):
             ) from e
         except Exception as e:
             raise
+        finally:
+            await client.close()
 
         # Parsing result
         if response['Success']:

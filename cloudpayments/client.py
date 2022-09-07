@@ -23,8 +23,8 @@ class CloudPayment:
         https://developers.cloudpayments.ru/#vyplata-po-kriptogramme
         """
         # deserialize incoming params into dict
-        # TODO предполагаю, что по хорошему нужно было бы описывать дата-класс, в который входящие арзументы функции
-        #  будут устанавливаться
+        # TODO предполагаю, что по-хорошему нужно было бы описывать дата-класс, в который входящие аргументы функции
+        #  будут маппиться
         charge_params = ChargeRequestSchema().load({
             'Amount': amount,
             'IpAddress': ip_address,
