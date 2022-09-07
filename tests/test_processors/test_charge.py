@@ -29,7 +29,7 @@ class TestCharge:
 
     @pytest.mark.asyncio
     async def test_payment_fail(self, charge_request_serialized, charge_response_incorrect_request):
-        """Check incorrect """
+        """Check incorrect request structure."""
         with aioresponses() as m:
             m.post(
                 'https://api.cloudpayments.ru/payments/cards/charge',
@@ -37,4 +37,4 @@ class TestCharge:
             )
 
             with pytest.raises(IncorrectRequestStructureError):
-                response = await ChargeProcessor().process(schema=charge_request_serialized, require_confirmation=False)
+                await ChargeProcessor().process(schema=charge_request_serialized, require_confirmation=False)
