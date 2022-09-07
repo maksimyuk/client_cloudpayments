@@ -12,7 +12,8 @@ class ChargeProcessor(BaseMethodProcessor):
     https://developers.cloudpayments.ru/#oplata-po-kriptogramme
     """
 
-    async def process(self, schema: ChargeRequestSchema, require_confirmation: bool):
+    @classmethod
+    async def process(cls, schema: ChargeRequestSchema, require_confirmation: bool):
         """Process payment by cryptogram."""
         client = CloudPaymentInteractionClient()
 

@@ -21,4 +21,6 @@ class CloudPayment:
         Call charge API method of cloudpayments.
         https://developers.cloudpayments.ru/#vyplata-po-kriptogramme
         """
+        # serialized incoming params into dict
+
         return ChargeProcessor(*args, **kwargs).process()

@@ -21,7 +21,7 @@ class TestCharge:
                 payload=charge_response_success,
             )
 
-            response = await ChargeProcessor().process(schema=charge_request_serialized, require_confirmation=False)
+            response = await ChargeProcessor.process(schema=charge_request_serialized, require_confirmation=False)
 
             # TODO сделать результат ответа в виде десериализованного объекта
             for key in ('reason_code', 'public_id', 'terminal_url'):
@@ -37,7 +37,7 @@ class TestCharge:
             )
 
             with pytest.raises(IncorrectRequestStructureError):
-                await ChargeProcessor().process(schema=charge_request_serialized, require_confirmation=False)
+                await ChargeProcessor.process(schema=charge_request_serialized, require_confirmation=False)
 
     @pytest.mark.asyncio
     async def test_process_charge_declined(self, charge_request_serialized, charge_response_charge_declined):
@@ -49,7 +49,7 @@ class TestCharge:
             )
 
             with pytest.raises(PaymentDeclinedError):
-                await ChargeProcessor().process(schema=charge_request_serialized, require_confirmation=False)
+                await ChargeProcessor.process(schema=charge_request_serialized, require_confirmation=False)
 
     @pytest.mark.asyncio
     async def test_process_secure_3d(self, charge_request_serialized, charge_response_secure_3d):
@@ -60,7 +60,7 @@ class TestCharge:
                 payload=charge_response_secure_3d,
             )
 
-            response = await ChargeProcessor().process(schema=charge_request_serialized, require_confirmation=False)
+            response = await ChargeProcessor.process(schema=charge_request_serialized, require_confirmation=False)
 
             # TODO сделать результат ответа в виде десериализованного объекта
             for key in ('transaction_id', 'pa_req', 'acs_url'):

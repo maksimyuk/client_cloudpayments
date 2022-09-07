@@ -8,8 +8,6 @@ class BaseMethodProcessor:
     You need inherit this class to add new method processor.
     """
 
-    def __init__(self, *args, **kwargs):
-        pass
-
-    async def process(self, *args, **kwargs):
+    @classmethod
+    async def process(cls, *args, **kwargs):
         pass
