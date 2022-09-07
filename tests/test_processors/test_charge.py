@@ -3,6 +3,7 @@ import pytest
 
 from aioresponses import aioresponses
 
+from cloudpayments.error import IncorrectRequestStructureError
 from cloudpayments.processors import ChargeProcessor
 from cloudpayments.models import TransactionSchema
 
@@ -25,3 +26,15 @@ class TestCharge:
             # TODO сделать результат ответа в виде десериализованного объекта
             for key in ('reason_code', 'public_id', 'terminal_url'):
                 assert key in response.keys()
+
+    @pytest.mark.asyncio
+    async def test_payment_fail(self, charge_request_serialized, charge_response_incorrect_request):
+        """Check incorrect """
+        with aioresponses() as m:
+            m.post(
+                'https://api.cloudpayments.ru/payments/cards/charge',
+                payload=charge_response_incorrect_request,
+            )
+
+            with pytest.raises(IncorrectRequestStructureError):
+                response = await ChargeProcessor().process(schema=charge_request_serialized, require_confirmation=False)

@@ -1,6 +1,7 @@
 
 from cloudpayments.base.error import InteractionResponseError
 from cloudpayments.base.processors import BaseMethodProcessor
+from cloudpayments.error import IncorrectRequestStructureError
 from cloudpayments.interaction.client import CloudPaymentInteractionClient
 from cloudpayments.models import ChargeRequestSchema, Secure3dAuthenticationSchema, TransactionSchema
 
@@ -39,7 +40,11 @@ class ChargeProcessor(BaseMethodProcessor):
             return TransactionSchema().load(response['Model'])
 
         if response['Message']:
-            return 'Message'
+            raise IncorrectRequestStructureError(
+                method="POST",
+                service='test',
+                message=response['Message'],
+            )
 
         if response['Model']:
             return 'Model'
