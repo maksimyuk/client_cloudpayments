@@ -1,5 +1,5 @@
 
-from typing import Any, Callable, Dict
+from typing import Callable, Dict
 from uuid import uuid4
 
 from aiohttp import BasicAuth

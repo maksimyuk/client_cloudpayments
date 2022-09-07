@@ -21,5 +21,6 @@ class CloudPaymentInteractionClient(AbstractInteractionClient):
     @basic_auth
     @idempotence
     def _get_session_kwargs(self) -> Dict[str, Any]:
+        """Redefined to set to session special params for all client-users."""
         return super()._get_session_kwargs()
 

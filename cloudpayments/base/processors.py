@@ -9,5 +9,6 @@ class BaseMethodProcessor:
     """
 
     @classmethod
+    @abstractmethod
     async def process(cls, *args, **kwargs):
         pass
