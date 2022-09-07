@@ -1,4 +1,5 @@
 
+from cloudpayments.base.error import InteractionResponseError
 from cloudpayments.base.processors import BaseMethodProcessor
 from cloudpayments.interaction.client import CloudPaymentInteractionClient
 from cloudpayments.models import ChargeRequestSchema, Secure3dAuthenticationSchema, TransactionSchema
