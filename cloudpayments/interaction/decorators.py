@@ -4,6 +4,8 @@ from uuid import uuid4
 
 from aiohttp import BasicAuth
 
+from cloudpayments.config import LOGIN, PASSWORD
+
 
 def basic_auth(func: Callable) -> Callable:
     """
@@ -13,7 +15,7 @@ def basic_auth(func: Callable) -> Callable:
     def wrapper(*args, **kwargs) -> Dict:
         session_kwargs = func(*args, **kwargs)
         session_kwargs.update({
-            'auth': BasicAuth(login='test', password='test')
+            'auth': BasicAuth(login=LOGIN, password=PASSWORD)
         })
 
         return session_kwargs
