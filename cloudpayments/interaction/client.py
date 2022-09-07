@@ -18,8 +18,8 @@ class CloudPaymentInteractionClient(AbstractInteractionClient):
         # Иначе ошибка в тестах Event loop is closed.
         self.CONNECTOR = TCPConnector(limit=30)
 
-    # @basic_auth
-    # @idempotence
-    # def _get_session_kwargs(self) -> Dict[str, Any]:
-    #     return super()._get_session_kwargs()
+    @basic_auth
+    @idempotence
+    def _get_session_kwargs(self) -> Dict[str, Any]:
+        return super()._get_session_kwargs()
 
