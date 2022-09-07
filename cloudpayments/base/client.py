@@ -86,9 +86,7 @@ class AbstractInteractionClient:
             response = None
             before = time.monotonic()
             try:
-                # response = await self.session.request(method, url, **kwargs)
-                # response = await ClientSession().request(method, url, **kwargs)
-                response = await ClientSession().request('GET', 'https://ya.ru')
+                response = await self.session.request(method, url, **kwargs)
 
                 assert response is not None
                 success = True

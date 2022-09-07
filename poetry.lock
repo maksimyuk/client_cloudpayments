@@ -19,6 +19,17 @@ yarl = ">=1.0,<2.0"
 speedups = ["aiodns", "brotli", "cchardet"]
 
 [[package]]
+name = "aioresponses"
+version = "0.7.3"
+description = "Mock out requests made by ClientSession from aiohttp package"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+aiohttp = ">=2.0.0,<4.0.0"
+
+[[package]]
 name = "aiosignal"
 version = "1.2.0"
 description = "aiosignal: a list of registered asynchronous callbacks"
@@ -28,18 +39,6 @@ python-versions = ">=3.6"
 
 [package.dependencies]
 frozenlist = ">=1.1.0"
-
-[[package]]
-name = "aresponses"
-version = "2.1.6"
-description = "Asyncio response mocking. Similar to the responses library used for 'requests'"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-aiohttp = ">=3.1.0,<4.0.0"
-pytest-asyncio = "*"
 
 [[package]]
 name = "async-timeout"
@@ -241,12 +240,12 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "c3ea611dadb50370641a893132d0b247c2893c0d30be4d8f0161c9d8fcfe207a"
+content-hash = "a216175485aa6dd58e54ad3d51c4b45c8a7bf1645df32148aae6a4e38939be9b"
 
 [metadata.files]
 aiohttp = []
+aioresponses = []
 aiosignal = []
-aresponses = []
 async-timeout = []
 attrs = []
 charset-normalizer = []

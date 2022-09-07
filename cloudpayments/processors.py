@@ -25,19 +25,23 @@ class ChargeProcessor(BaseMethodProcessor):
             response = await client.post(
                 interaction_method=interaction_method,
                 url=endpoint_url,
-                params=ChargeRequestSchema().dump(schema),
+                json=ChargeRequestSchema().dump(schema),
             )
+        except InteractionResponseError as e:
+            raise InteractionResponseError(
+                status_code=e.status_code, method=e.method, service=e.service
+            ) from e
         except Exception as e:
             raise
 
         # Parsing result
-        if response['success']:
+        if response['Success']:
             return TransactionSchema().load(response['Model'])
 
-        if response['message']:
+        if response['Message']:
             return 'Message'
 
-        if response['model']:
+        if response['Model']:
             return 'Model'
 
         return Secure3dAuthenticationSchema().load(response['Model'])
