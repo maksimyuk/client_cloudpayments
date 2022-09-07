@@ -5,7 +5,6 @@ from aioresponses import aioresponses
 
 from cloudpayments.error import IncorrectRequestStructureError, PaymentDeclinedError
 from cloudpayments.processors import ChargeProcessor
-from cloudpayments.models import TransactionSchema
 
 
 class TestCharge:

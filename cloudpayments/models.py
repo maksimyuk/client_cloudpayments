@@ -43,18 +43,19 @@ class ChargeRequestSchema(Schema):
     """Model for charge request."""
 
     amount = fields.Number(required=True, data_key='Amount')
-    currency = fields.String(data_key='Currency')
+    currency = EnumField(Currency, data_key='Currency', default=Currency.RUB)
     ip_address = fields.IP(required=True, data_key='IpAddress')
     card_cryptogram_packet = fields.String(required=True, data_key='CardCryptogramPacket')
-    name = fields.String(data_key='Name')
-    payment_url = fields.URL(data_key='PaymentUrl')
-    invoice_id = fields.String(data_key='InvoiceId')
-    description = fields.String(data_key='Description')
+    name = fields.String(data_key='Name', allow_none=True)
+    payment_url = fields.URL(data_key='PaymentUrl', allow_none=True)
+    invoice_id = fields.String(data_key='InvoiceId', allow_none=True)
+    description = fields.String(data_key='Description', allow_none=True)
     culture_name = EnumField(Localization, data_key='CultureName')
-    account_id = fields.String(data_key='AccountId')
-    email = fields.Email(data_key='Email')
-    payer = fields.Nested(PayerSchema, data_key='Payer')
-    json_data = fields.Dict(data_key='Postcode')
+    # TODO в документации сказано, что это необязательное поле с обязательным идентификатором
+    account_id = fields.String(data_key='AccountId', allow_none=True)
+    email = fields.Email(data_key='Email', allow_none=True)
+    payer = fields.Nested(PayerSchema, data_key='Payer', allow_none=True)
+    json_data = fields.Dict(data_key='JsonData', allow_none=True)
 
 
 class Secure3dAuthenticationSchema(Schema):
