@@ -28,7 +28,7 @@ class TestCharge:
                 assert key in response.keys()
 
     @pytest.mark.asyncio
-    async def test_payment_fail(self, charge_request_serialized, charge_response_incorrect_request):
+    async def test_process_incorrect_request_structure(self, charge_request_serialized, charge_response_incorrect_request):
         """Check incorrect request structure."""
         with aioresponses() as m:
             m.post(
