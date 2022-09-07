@@ -173,3 +173,24 @@ def charge_response_charge_declined() -> dict:
         'Success': False,
         'Message': None
     }
+
+
+@pytest.fixture()
+def charge_response_secure_3d() -> dict:
+    """Example of response for secure 3d."""
+    return {
+        "Model": {
+            "TransactionId": 891463508,
+            "PaReq": "+/eyJNZXJjaGFudE5hbWUiOm51bGwsIkZpcnN0U2l4IjoiNDI0MjQyIiwiTGFzdEZvdXIiOiI0MjQyIiwiQW1vdW50IjoxMDAuMCwiQ3VycmVuY3lDb2RlIjoiUlVCIiwiRGF0ZSI6IjIwMjEtMTAtMjVUMDA6MDA6MDArMDM6MDAiLCJDdXN0b21lck5hbWUiOm51bGwsIkN1bHR1cmVOYW1lIjoicnUtUlUifQ==",
+            "GoReq": None,
+            "AcsUrl": "https://demo.cloudpayments.ru/acs",
+            "ThreeDsSessionData": None,
+            "IFrameIsAllowed": True,
+            "FrameWidth": None,
+            "FrameHeight": None,
+            "ThreeDsCallbackId": "7be4d37f0a434c0a8a7fc0e328368d7d",
+            "EscrowAccumulationId": None
+        },
+        "Success": False,
+        "Message": None
+    }

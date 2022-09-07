@@ -46,7 +46,7 @@ class ChargeProcessor(BaseMethodProcessor):
                 message=response['Message'],
             )
 
-        if response['Model']:
+        if response['Model'] and 'ReasonCode' in response['Model'].keys():
             raise PaymentDeclinedError(
                 method="POST",
                 service=interaction_method,
