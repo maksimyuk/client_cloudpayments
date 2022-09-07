@@ -3,7 +3,7 @@ import pytest
 
 from aioresponses import aioresponses
 
-from cloudpayments.error import IncorrectRequestStructureError
+from cloudpayments.error import IncorrectRequestStructureError, PaymentDeclinedError
 from cloudpayments.processors import ChargeProcessor
 from cloudpayments.models import TransactionSchema
 
@@ -38,3 +38,19 @@ class TestCharge:
 
             with pytest.raises(IncorrectRequestStructureError):
                 await ChargeProcessor().process(schema=charge_request_serialized, require_confirmation=False)
+
+    @pytest.mark.asyncio
+    async def test_process_charge_declined(self, charge_request_serialized, charge_response_charge_declined):
+        """Check response for charge declined"""
+        with aioresponses() as m:
+            m.post(
+                'https://api.cloudpayments.ru/payments/cards/charge',
+                payload=charge_response_charge_declined,
+            )
+
+            with pytest.raises(PaymentDeclinedError):
+                await ChargeProcessor().process(schema=charge_request_serialized, require_confirmation=False)
+
+    @pytest.mark.asyncio
+    async def test_process_secure_3d(self):
+        pass
